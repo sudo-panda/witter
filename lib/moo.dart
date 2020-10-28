@@ -1,4 +1,8 @@
+import 'dart:html';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MooPage extends StatefulWidget {
@@ -9,27 +13,30 @@ class MooPage extends StatefulWidget {
 }
 
 class _MooPageState extends State<MooPage> {
-  final _mooController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final _focusNode = FocusNode();
+  String _moo = '';
+  final _mooController = TextEditingController();
 
-  void hasLoggedIn() async {
+  void checkEligibilty() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (!prefs.containsKey('email'))
+    if (!prefs.containsKey('email')) {
       Navigator.pushReplacementNamed(context, "/login");
+    } else if (!prefs.containsKey('enrolled')) {
+      Navigator.pushReplacementNamed(context, '/enroll');
+    }
   }
 
   @override
   void initState() {
     super.initState();
 
-    _mooController.addListener(_onTextChange);
+    checkEligibilty();
   }
 
   @override
   void dispose() {
-    _mooController.dispose();
     super.dispose();
   }
 
@@ -38,9 +45,9 @@ class _MooPageState extends State<MooPage> {
     return Scaffold(
       body: Center(
         child: Container(
-          constraints: BoxConstraints(maxWidth: 500, maxHeight: 300),
+          constraints: BoxConstraints(maxWidth: 500),
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 10),
             child: Form(
               key: _formKey,
               child: SingleChildScrollView(
@@ -56,7 +63,7 @@ class _MooPageState extends State<MooPage> {
                     SizedBox(
                       height: 40,
                     ),
-                    SizedBox(
+                    Container(
                       height: 150,
                       child: TextFormField(
                         focusNode: _focusNode,
@@ -82,13 +89,12 @@ class _MooPageState extends State<MooPage> {
                           labelText: 'Moo',
                           suffixIcon: Icon(Icons.create),
                         ),
+                        onSaved: (moo) => _moo = moo,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        ButtonTheme(
+                    Align(
+                        alignment: Alignment.centerRight,
+                        child: ButtonTheme(
                           minWidth: 100,
                           height: 45,
                           child: OutlineButton(
@@ -99,19 +105,7 @@ class _MooPageState extends State<MooPage> {
                               style: BorderStyle.solid,
                             ),
                             splashColor: Theme.of(context).accentColor,
-                            onPressed: () async {
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
-                                Navigator.pushReplacementNamed(context, "/");
-
-                                // TODO  change this
-                                SharedPreferences prefs =
-                                    await SharedPreferences.getInstance();
-                                prefs.clear();
-                                hasLoggedIn();
-                                // TODO till here
-                              }
-                            },
+                            onPressed: _onSubmit,
                             child: Text(
                               "Moo",
                               style: TextStyle(
@@ -119,8 +113,89 @@ class _MooPageState extends State<MooPage> {
                                   fontSize: 15),
                             ),
                           ),
-                        )
-                      ],
+                        )),
+                    SizedBox(
+                      height: 50,
+                    ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '  Your Moos',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w100,
+                          ),
+                        )),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Container(
+                      constraints: BoxConstraints(maxHeight: 900),
+                      child: FutureBuilder(
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                                      ConnectionState.none &&
+                                  snapshot.hasData == null ||
+                              snapshot.data == null) {
+                            return Center(
+                                child: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: CircularProgressIndicator(),
+                            ));
+                          }
+                          if (snapshot.data.length == 0) {
+                            return Container(
+                                padding: EdgeInsets.all(20),
+                                child: Text(
+                                  'I can see you have no moos yet, type one out',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ));
+                          }
+                          return ListView.builder(
+                            itemCount: snapshot.data.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5)),
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .color),
+                                ),
+                                margin: EdgeInsets.all(10),
+                                padding: EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'time',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w200),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child:
+                                          Text(snapshot.data[index].toString()),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        future: getMoos(),
+                      ),
                     )
                   ],
                 ),
@@ -132,11 +207,47 @@ class _MooPageState extends State<MooPage> {
     );
   }
 
-  void _onSubmit() {
+  void _onSubmit() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
+
+      if (await _checkAuthViaAPI()) {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+
+        var moos = await getMoos();
+        moos.insert(0, _moo);
+        prefs.setStringList('moos', moos);
+
+        setState(() {
+          _mooController.clear();
+        });
+      } else {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.remove('email');
+        prefs.remove('enrolled');
+        Navigator.pushReplacementNamed(context, '/login');
+      }
     }
   }
 
-  void _onTextChange() {}
+  Future<bool> _checkAuthViaAPI() async {
+    return true;
+  }
+
+  Future<List<String>> getMoos() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('moos')) {
+      return prefs.getStringList('moos');
+    } else {
+      return [];
+    }
+  }
+
+  List<Widget> wrapStrings(List<String> stringList) {
+    List<Widget> widgetList = [];
+    for (var string in stringList) {
+      widgetList.add(Text(string));
+    }
+    return widgetList;
+  }
 }

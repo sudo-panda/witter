@@ -12,17 +12,21 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   FocusNode _emailFocusNode = FocusNode();
 
-  void hasLoggedIn() async {
+  void checkEligibility() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (prefs.containsKey('email'))
-      Navigator.pushReplacementNamed(context, "/");
+    if (prefs.containsKey('email')) {
+      if (prefs.containsKey('enrolled'))
+        Navigator.pushReplacementNamed(context, '/');
+      else
+        Navigator.pushReplacementNamed(context, '/enroll');
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    hasLoggedIn();
+    checkEligibility();
   }
 
   @override

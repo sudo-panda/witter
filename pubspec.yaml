@@ -25,6 +25,8 @@ dependencies:
     sdk: flutter
   shared_preferences: ^0.5.12+2
   email_validator: ^1.0.5
+  carousel_slider: ^2.3.1
+  flutter_lorem: ^1.1.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:witter/enroll.dart';
 import 'package:witter/login.dart';
 import 'package:witter/moo.dart';
 
@@ -8,8 +8,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,10 +16,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/login',
+      initialRoute: '/enroll',
       routes: {
         '/': (context) => MooPage(),
         '/login': (context) => LoginPage(),
+        '/enroll': (context) => EnrollPage(),
       },
     );
   }
