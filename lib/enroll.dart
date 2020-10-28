@@ -158,8 +158,8 @@ class _EnrollInputState extends State<EnrollInput> {
                 ),
                 Align(
                   alignment: Alignment.centerRight,
-                  child: ButtonTheme(
-                    minWidth: 100,
+                  child: SizedBox(
+                    width: 100,
                     height: 45,
                     child: OutlineButton(
                       shape: StadiumBorder(),

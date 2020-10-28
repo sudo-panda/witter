@@ -88,8 +88,8 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 16,
                   ),
-                  ButtonTheme(
-                    minWidth: 100,
+                  SizedBox(
+                    width: 100,
                     height: 45,
                     child: OutlineButton(
                       shape: StadiumBorder(),
