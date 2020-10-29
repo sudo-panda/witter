@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="../public/stylesheets/style.css" />
+    <style>
+      .mySlides {
+        display: none;
+      }
+
+      /* Slideshow container */
+      .slideshow-container {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+      }
+
+      /* Fading animation */
+      .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      @-webkit-keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+        <div class="card center">
+          <div ><h1>Witter</h1></div>
+          <form>
+            <div class="vcenter" style="top: 23%; width: 80%">
+                <p><b>Enter the text below</b><br>
+                  Random text here kdjf;akdfaskf askfdj;asfjl aksdflas;df
+                  kasf;jaskdf ksdjf;asf;ldadskasdf
+                </p>
+            </div>
+            <div class="textarea vcenter" style="top: 50%">
+              <textarea></textarea>
+            </div>
+            <a href="#" onclick="plusSlides(1)">
+              <div class="btn vcenter" style="top: 73%">
+                <span>Submit 1/2</span>
+              </div>
+            </a>
+          </form>
+        </div>
+      </div>
+      <div class="mySlides fade">
+        <div class="card center">
+          <div ><h1>Witter</h1></div>
+          <form>
+            <div class="vcenter" style="top: 23%; width: 80%">
+                <p><b>Enter the text below</b><br>
+                  Random text here fasfasdfas as fasdf;ajf;klasdf asdfkalsf;laks
+                  asfkas;fkas faskf;aksf;a fkasf;a sf;kasf;k as; fkas;fkja;skdf
+                </p>
+            </div>
+            <div class="textarea vcenter" style="top: 50%">
+              <textarea></textarea>
+            </div>
+            <a href="#" onclick="next()">
+              <div class="btn vcenter" style="top: 73%">
+                <span>Submit 2/2</span>
+              </div>
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var slideIndex = 1;
+      showSlides(slideIndex);
+
+      function plusSlides(n) {
+        showSlides((slideIndex += n));
+      }
+
+      function enroll() {
+        //fill this will checking logic 
+      }
+      function next() {
+        //fill this with logic
+      }
+
+      function currentSlide(n) {
+        showSlides((slideIndex = n));
+      }
+
+      function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+      }
+    </script>
+  </body>
+</html>
