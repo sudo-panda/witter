@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -107,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                           await prefs.setString('email', _email);
                           Navigator.pushReplacementNamed(context, "/");
                         }
+                        emailEnroll(_email);
                       },
                       child: Text(
                         "Log In",
@@ -124,4 +127,15 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+
+emailEnroll(email) async {
+  var url = 'http://localhost:5000/enrol';
+  final http.Response response = await http.post(
+    url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{'email': email}),
+  );
 }

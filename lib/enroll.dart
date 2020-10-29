@@ -42,14 +42,13 @@ class _EnrollPageState extends State<EnrollPage> {
           ),
         ],
         options: CarouselOptions(
-            scrollPhysics: NeverScrollableScrollPhysics(),
-            onPageChanged: (index, reason) {
-              setState(() {});
-            },
-            enableInfiniteScroll: false,
-            height: 800,
-            
-            ),
+          scrollPhysics: NeverScrollableScrollPhysics(),
+          onPageChanged: (index, reason) {
+            setState(() {});
+          },
+          enableInfiniteScroll: false,
+          height: 800,
+        ),
         carouselController: _controller,
       ),
     );
