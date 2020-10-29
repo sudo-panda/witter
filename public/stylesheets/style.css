@@ -4,6 +4,15 @@ html {
   font-family: 'Titillium Web', sans-serif;
 }
 
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
 .center {
   position: absolute;
   left: 50%;
