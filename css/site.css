@@ -157,16 +157,17 @@ input:focus ~ .highlight {
   border-width: 0;
   outline: none;
   border-radius: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
   
-  background-color: blueviolet;
-  color: #ecf0f1;
+  border-color: blueviolet;
+  border-width: 3px;
+  color: blueviolet;
   
   transition: background-color .3s;
 }
 
 .btn:hover, .btn:focus {
   background-color: blueviolet;
+  color: azure;
 }
 
 .btn > * {
