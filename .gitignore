@@ -1,4 +1,3 @@
 node_modules
-.dart_tool
-.flutter-plugins
-.packages
+.*
+!/.gitignore
