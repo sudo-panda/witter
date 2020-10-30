@@ -1,16 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 html {
   font-family: 'Titillium Web', sans-serif;
 }
 
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  top:0;
+  left: 0;
 }
 
 a {
   color: #00B7FF;
+}
+
+p {
+  font-size: medium;
 }
 
 .center {
@@ -21,12 +25,29 @@ a {
   padding: 10px;
 }
 
+.safearea {
+  min-width: 500px;
+  height: 97%;
+  top: 0;
+  left: 0;
+}
+
 h1 {
   font-size: xx-large;
   color: blueviolet;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -0%);
+  font-weight: lighter;
+}
+
+h2 {
+  font-size: x-large;
+  color: black;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  font-weight: 100;
 }
 
 .vcenter {
@@ -230,6 +251,7 @@ input:focus ~ .highlight {
   height: 18%;
   border: solid 2px blueviolet;
 }
+
 .textarea > textarea {
   border: solid 0px black;
   width: 100%;
@@ -237,4 +259,5 @@ input:focus ~ .highlight {
   padding: 0;
   height: 100%;
   resize: none;
+  font-size: large;
 }
