@@ -4,14 +4,13 @@ html
     title= title
     meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    link(rel="stylesheet", href="/css/style.css" type="text/css")
+    link(rel="stylesheet", href="css/moo_style.css" type="text/css")
     script(src="/js/functions.js", type="application/javascript")
     script(src="//typingdna.com/scripts/typingdna.js?v2.8")
     script.
       session_id = '#{sid}';
   body
   div.container(style={"padding":"0"})
-    include ./flash
   style.
     .moo {
     width: 80%;
@@ -24,22 +23,23 @@ html
   div
     h1 Witter
   form(method="POST" onsubmit="return verifyText(this)")
-    .textarea.vcenter(style='top: 20%',rows="3", cols="100", oncopy="return false", onpaste="return false", placeholder="Type here...")
+    .textarea.vcenter(oncopy="return false", onpaste="return false", placeholder="Type here...")
       textarea
     a(href='#' onclick='next()')
-      button.btn.vcenter(role ="button" style='top: 42%' type="submit")
+      button.btn.vcenter(role ="button" type="submit")
         span Moo
-  div.history
-    h2(style='top: 60%') Your Moos
-  .moo.vcenter(style='top: 67%')
-    span(style='color: gray;') time
-    p Your moo here
-
+  div
+    h2 Your Moos
+    // When no moo present
+    .vcenter(style='margin-top: 70px;')
+        span(style='color: gray; font-size: large;') No moos till now
+            // till here
+            // Moo starts here
+        .moo.vcenter
+            span time
+            p Your moo here
+    // Moo ends here
   script.
-    tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
-    tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
-    tdna.startDiagram();
-
 
     /** checks if Enter is pressed on text forms and calls the next function */
     initControls();
