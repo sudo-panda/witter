@@ -1,0 +1,53 @@
+doctype html
+head
+  meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel="stylesheet", href="/css/style.css" type="text/css")
+  script(src="/js/functions.js", type="application/javascript")
+  script(src="//typingdna.com/scripts/typingdna.js?v2.8")
+  script.
+    session_id = '#{sid}';
+  title Login
+  include ./flash
+  body
+  div.container(style={"padding":"0"})
+    div.step(id="step_username", style={"display":"inline", "opacity": "1"})
+      .card.center
+        h1 Witter
+        form(method='post', onsubmit='return validateUser()')
+          .vcenter(style='top: 40%')
+            .group
+              input.form-control(type="email", id="username", name="username", placeholder="")
+              span.highlight
+              span.bar
+              label Email
+          div 
+            .btn.vcenter(style='top: 60%')
+              input( id="btn_next" type='submit', value='Log In')
+      //Loading
+    //- div.step(id="step_loading")
+    //-     br
+    //-     p hello
+    //-     svg moo.svg
+  script.
+    document.getElementById('username').focus();
+    var username = getCookie('demousername'); /** a variable where to store the user name */
+    if(username !== undefined && username !== "") {
+        document.getElementById('username').value = username;
+    }
+
+        /*****************************************************
+         * called after submitting a username; if username
+         * is ok it redirects to the verify page
+         *****************************************************/
+    function validateUser() {
+        var username = document.getElementById("username");
+        if(username && username.value.length > 5) {
+            swapContent('step_username', 'step_loading');
+            setCookie('demousername',username.value);
+            return true;
+        } else {
+            alert('Your username/id should be at least 6 characters in length');
+            return false;
+        }
+    }

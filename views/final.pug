@@ -1,0 +1,36 @@
+doctype html
+head
+  meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel="stylesheet", href="/css/style.css" type="text/css")
+  script(src="/js/functions.js", type="application/javascript")
+  script(src="//typingdna.com/scripts/typingdna.js?v2.8")
+  script.
+    session_id = '#{sid}';
+  title Login
+  include ./flash
+  body
+  div.container(style={"padding":"0"})
+    div.step(id="step_username", style={"display":"inline", "opacity": "1"})
+      .card.center
+        p
+            if loggedIn
+                h4 Your Moo as been posted!
+                br
+                p Thanks for using witter!
+            else
+                h4 You've been logged out.
+                br       
+                p Your typing pattern didn't match the enrolled pattern.
+        div(style={'padding-top':'20px'})
+            a.btn.btn-colors.btn-s(onclick="restart();" role="button")
+                b Start again
+  script.
+      (function() {
+          if(!isIframe()) {
+              var note = document.getElementById('note');
+              if(note) {
+                  note.style.display = 'block';
+              }
+          }
+      })();

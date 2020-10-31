@@ -1,0 +1,83 @@
+doctype html
+html
+  head
+    title= title
+    meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="css/moo_style.css" type="text/css")
+    script(src="/js/functions.js", type="application/javascript")
+    script(src="//typingdna.com/scripts/typingdna.js?v2.8")
+    include ./flash
+    script.
+      session_id = '#{sid}';
+  body
+  div.container(style={"padding":"0"})
+  style.
+    .moo {
+    width: 80%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 2px gray;
+    }
+.safearea.vcenter
+  div
+    h1 Witter
+  form(method="POST",id="inputtextbox",onsubmit="set_tp(this)", name="inputtextbox", oncopy="return false", onpaste="return false")
+    .textarea.vcenter.form-control(oncopy="return false", onpaste="return false", placeholder="Type here...",id="moobox")
+      textarea
+    input(type="hidden" name="session_id", value=sid)
+    input(type="hidden" name="tp")
+    a(href='#')
+      button.btn.vcenter(name ="moo_bar" role ="button" type="submit")
+        span Moo
+//-   div
+//-     h2 Your Moos
+//-     // When no moo present
+//-     .vcenter(style='margin-top: 70px;')
+//-         span(style='color: gray; font-size: large;') No moos till now
+//-             // till here
+//-             // Moo starts here
+//-         .moo.vcenter
+//-             #moo_list
+
+    // Moo ends here
+
+
+script.
+    tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
+    tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
+    tdna.startDiagram();
+    /** checks if Enter is pressed on text forms and calls the next function */
+   
+    $("[name=moo_bar]").on('click', function () {
+       insertElements("moobox","moo_list");
+    });
+
+    (function initControls() {
+        var controls = document.getElementsByClassName("form-control");
+        if(controls) {
+            for (var i = 0; i < controls.length; i++) {
+                controls[i].onkeydown = function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        var stackLength = getStackLen();
+                        if(typeof nextFunction === 'function') {
+                            nextFunction();   
+                        }
+                    }
+                }
+            }
+        }
+    })();
+
+    function insertElements(){
+        var moodiv = document.createElement("div");
+        var text = document.createTextNode( document.getElementById("moobox").value)
+        moodiv.appendChild(text);
+        document.getElementById("moo_list").append(moodiv);
+    }
+
+    function set_tp(form){
+        form.tp.value = tdna.getTypingPattern({type:0, extended:true, length:150})
+    }

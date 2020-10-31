@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+html {
+  font-family: "Titillium Web", sans-serif;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  top: 0;
+  left: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-size: medium;
+}
+
+.safearea {
+  max-width: 500px;
+  height: 97%;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: xx-large;
+  color: blueviolet;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  font-weight: lighter;
+}
+
+h2 {
+  font-size: x-large;
+  color: black;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  font-weight: 100;
+  margin-top: 90px;
+}
+
+.vcenter {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  padding: 10px;
+}
+
+.card {
+  min-width: 500px;
+  height: 300px;
+  padding: 20px;
+  box-shadow: 0px 0px 18px #888888;
+  border-radius: 10px;
+  border: solid 2px blueviolet;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: inherit;
+  border: none;
+  border-bottom: 1px solid #757575;
+}
+
+input:focus {
+  outline: none;
+}
+
+label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: relative;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: blueviolet;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: inherit + 15px;
+}
+.bar:before,
+.bar:after {
+  content: "";
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: relative;
+  background: blueviolet;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+input:focus ~ .bar:before,
+input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.highlight {
+  position: relative;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+input:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: blueviolet;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: blueviolet;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: blueviolet;
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.btn {
+  position: relative;
+
+  display: block;
+  margin: 30px auto 30px auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  border-radius: 40px;
+
+  color: blueviolet;
+
+  transition: background-color 0.3s;
+  border: solid 3px blueviolet;
+
+  font-weight: bold;
+  width: 100px;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: blueviolet;
+  color: azure;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn > input {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: inherit;
+  border: none;
+  background-color: inherit;
+}
+
+.btn span {
+  display: block;
+  padding: 7px 24px;
+}
+
+.btn:before {
+  content: "";
+
+  position: relative;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  width: 0;
+  padding-top: 0;
+
+  border-radius: 100%;
+
+  background-color: rgba(236, 240, 241, 0.3);
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+
+  transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+
+.textarea {
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  min-height: 100px;
+  border: solid 2px blueviolet;
+}
+
+.textarea > textarea {
+  border: solid 0px black;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  resize: none;
+  font-size: large;
+}
+
+span.highlighted {
+  color: #999;
+}
+
+.btn > button:disabled,
+.btn > button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.moo {
+  width: 90%;
+  min-height: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 2px gray;
+  text-align: left;
+  margin: 30px 0;
+  position: relative;
+}
+
+.moo > span {
+  color: gray;
+  position: relative;
+}
