@@ -2,32 +2,35 @@ doctype html
 head
   meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-<<<<<<< Updated upstream
-  link(rel="stylesheet", href="/css/final_style.css" type="text/css")
-=======
   link(rel="stylesheet", href="/css/final.css" type="text/css")
->>>>>>> Stashed changes
   script(src="/js/functions.js", type="application/javascript")
   script(src="//typingdna.com/scripts/typingdna.js?v2.8")
   script.
     session_id = '#{sid}';
-  title Witter
+  title Login
   include ./flash
   body(onload= "draw();")
   div.container(style={"padding":"0"})
     div.step(id="step_username", style={"display":"inline", "opacity": "1"})
-      .card.center
-        p
-            if loggedIn
-                h3 Your Moo as been posted!
-                br
-                p Thanks for using witter!
-            else
-                h3 You've been logged out.
-                br       
-                p Your typing pattern didn't match the enrolled pattern.
-        div.btn.vcenter(style={"top":"200px"})
-            input(value="Login Again", type="submit", onclick="restart()")
+        if loggedIn
+            .conf-modal.center.success
+                .title-icon
+                    img(src='http://jimy.co/res/icon-success.jpg')
+                .title-text
+                    h1 Your Moo as been posted!
+                p Thanks for using witter! 
+                .modal-footer
+                    .conf-but.green(onclick="restart();" role="button") Start again
+        else
+            .conf-modal.center.failure
+                .title-icon
+                    img(src='/assets/Webp.net-resizeimage.png')
+                .title-text
+                    h1 You've been logged out
+                p Your typing pattern didn't match the enrolled pattern
+                .modal-footer
+                    .conf-but.red(onclick="restart();" role="button") Start again
+
   script.
       (function() {
           if(!isIframe()) {
