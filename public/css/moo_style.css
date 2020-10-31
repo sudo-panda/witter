@@ -292,3 +292,7 @@ span.highlighted {
   color: gray;
   position: relative;
 }
+
+small{
+  color:blueviolet;
+}

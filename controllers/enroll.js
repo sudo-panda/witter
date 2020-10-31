@@ -21,7 +21,7 @@ var enroll = {
         /** If we have more than 2 stored typing patterns enrollments process is over. */
         if(sessionData.enrollPatterns.length >= 2) {
             return res.render('enroll', {
-                title: 'Enroll new user - TypingDNA',
+                title: 'Enroll',
                 sid:req.sessionID,
                 finish: sessionData.enrollPatterns.length >= 2,
                 messages: messages
@@ -31,7 +31,7 @@ var enroll = {
         /** We have less than 2 typing patterns, gat a new quote(text) and render the page. */
         typingDnaClient.getQuote(160, 180, function(error, result) {
             res.render('enroll', {
-                title: 'Enroll new user - TypingDNA',
+                title: 'Enroll',
                 sid:req.sessionID,
                 currentQuote: result.quote,
                 author: result.author,
