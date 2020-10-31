@@ -26,10 +26,10 @@ var enroll = {
                 finish: sessionData.enrollPatterns.length >= 2,
                 messages: messages
             });
-        }   
+        }
 
-        /** We have less than 2 typing patterns, get a new quote(text) and render the page. */
-        typingDnaClient.getQuote(160, 200, function(error, result) {
+        /** We have less than 2 typing patterns, gat a new quote(text) and render the page. */
+        typingDnaClient.getQuote(160, 180, function(error, result) {
             res.render('enroll', {
                 title: 'Enroll new user - TypingDNA',
                 sid:req.sessionID,

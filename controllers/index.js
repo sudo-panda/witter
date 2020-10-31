@@ -67,7 +67,7 @@ var index = {
                 if(result['success'] === 1) {
                     req.session.save(function() {
                         if(result.count > 0) {
-                            /** User is allready enrolled, redirect to verify. */
+                            /** User is allready enrolled, redirect to Moo. */
                             res.redirect('Moo')
                         } else {
                             /** The user is not enrolled yet, redirect to enroll. */

@@ -1,8 +1,9 @@
 'use strict';
 
 var index = require('../controllers/index');
-var Moo = require('../controllers/Moo');
 var enroll = require('../controllers/enroll');
+var Moo = require('../controllers/Moo');
+
 
 function initSessionVars() {
     return function(req, res, next) {
