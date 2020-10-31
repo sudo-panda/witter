@@ -1,5 +1,6 @@
 'use strict';
 
+const { RSA_NO_PADDING } = require('constants');
 var functions = require('../resources/functions');
 var typingDnaClient = global.typingDnaClient;
 

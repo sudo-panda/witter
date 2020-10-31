@@ -280,3 +280,7 @@ span.highlighted {
   background-color: #cccccc;
   color: #666666;
 }
+
+.step_no{
+  color:blueviolet;
+}
