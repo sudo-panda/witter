@@ -193,6 +193,7 @@ input:focus ~ .highlight {
 
   font-weight: bold;
   width: 100px;
+  height: 41px;
 }
 
 .btn:hover,
