@@ -14,7 +14,7 @@ var moo = {
         
         var messages = Object.assign({},req.session.data.messages);
         res.render('moo', {
-            title: 'Verify user - TypingDNA',
+            title: 'Moo homescreen',
             sid:req.sessionID,
             messages: messages
         });
@@ -31,7 +31,7 @@ var moo = {
 
         /** Verify if post body contains the typing pattern, if not display error message. */
         if(!typing_pattern) {
-            sessionData.messages.errors.push({param: 'userId', msg:"Post body doesn't contain typing pattern"});
+            // sessionData.messages.errors.push({param: 'userId', msg:"Post body doesn't contain typing pattern"});
             return  req.session.save(function(){
                 res.redirect(303,'Moo');
             })
