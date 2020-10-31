@@ -261,3 +261,7 @@ input:focus ~ .highlight {
   resize: none;
   font-size: large;
 }
+
+span.highlighted {
+  color: #999;
+}
