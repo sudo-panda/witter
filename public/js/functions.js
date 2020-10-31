@@ -1,7 +1,3 @@
-/**************************************
- * GENERIC FUNCTIONS USED BY THE DEMO *
- **************************************/
-
 /** initialize page controls */
 function initControls() {
     var controls = document.getElementsByClassName("form-control");
@@ -222,3 +218,10 @@ function isIframe() {
         return true;
     }
 }
+
+// function insertElements(moobox,moo_list){
+//     var moodiv = document.createElement("div");
+//     var text = document.createTextNode( document.getElementById(moobox).value)
+//     moodiv.appendChild(text);
+//     document.getElementById(moo_list).append(moodiv);
+// }

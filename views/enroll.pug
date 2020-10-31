@@ -20,12 +20,8 @@ html
                 p
                     if step ===  1
                         b.step_no 1 of 2
-                        //- br
-                        //- b Please type the text below
                     else
                         b.step_no 2 of 2
-                        //- br
-                        //- b Please type one more text
                 p
                     span.highlighted(id="pAH")
                     span(id="pA")
@@ -53,8 +49,9 @@ html
                     input(value="Start again", type="submit", onclick="restart()")
     //Loading
     //- div.step(id="step_loading")
-    //-     .card.center
-    //-         p Please wait while we prepare your enrollment text
+    //-     br
+    //-     p loading..
+    //-     svg moo.svg    
     if(!finish)
       script.
           tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */

@@ -69,13 +69,13 @@ var moo = {
                 })
             }
             else {
-                /** Typing pattern authentication succeeded, redirect to final. */
-                return  req.session.save(function(){
-                    res.redirect('index');
-                })
-            }
+            /** Typing pattern authentication succeeded, redirect to final. */
+            sessionData.typingResult = 1;
+            return  req.session.save(function(){
+                res.redirect('final');
         })
-    }
+        }
+    })
+}
 };
-
 module.exports = moo;

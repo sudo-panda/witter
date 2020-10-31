@@ -29,17 +29,17 @@ html
     input(type="hidden" name="session_id", value=sid)
     input(type="hidden" name="tp")
     a(href='#')
-      button.btn.vcenter(role ="button" type="submit")
+      button.btn.vcenter(name ="moo_bar" role ="button" type="submit")
         span Moo
-  div
-    h2 Your Moos
-    // When no moo present
-    .vcenter(style='margin-top: 70px;')
-        span(style='color: gray; font-size: large;') No moos till now
-            // till here
-            // Moo starts here
-        .moo.vcenter
-            #moo_list
+//-   div
+//-     h2 Your Moos
+//-     // When no moo present
+//-     .vcenter(style='margin-top: 70px;')
+//-         span(style='color: gray; font-size: large;') No moos till now
+//-             // till here
+//-             // Moo starts here
+//-         .moo.vcenter
+//-             #moo_list
 
     // Moo ends here
 
@@ -49,7 +49,10 @@ script.
     tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
     tdna.startDiagram();
     /** checks if Enter is pressed on text forms and calls the next function */
-
+   
+    $("[name=moo_bar]").on('click', function () {
+       insertElements("moobox","moo_list");
+    });
 
     (function initControls() {
         var controls = document.getElementsByClassName("form-control");
