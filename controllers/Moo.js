@@ -29,7 +29,7 @@ var moo = {
 
         /** Verify if post body contains the typing pattern, if not display error message. */
         if(!typing_pattern) {
-            sessionData.messages.errors.push({param: 'userId', msg:'Invalid typing pattern'});
+            sessionData.messages.errors.push({param: 'userId', msg:sessionData.internalUserId});
             return  req.session.save(function(){
                 res.redirect(303,'Moo');
             })
@@ -71,8 +71,10 @@ var moo = {
                 /** Typing pattern authentication succeeded, redirect to final. */
                 sessionData.typingResult = 1;
                 return  req.session.save(function(){
-                    postMessage();  //TODO - write this function
-                    res.redirect('final');
+                    const moo_div = document.createElement("div");
+                    var textnode = document.createTextNode(document.getElementById('inputtextbox').value);
+                    moo_div.appendChild(textnode);
+                    document.getElementById("moo_list").appendChild(node);
             })
             }
         })

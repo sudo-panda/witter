@@ -23,10 +23,12 @@ html
 .safearea.vcenter
   div
     h1 Witter
-  form(method="POST" onsubmit="return verifyText(this)")
-    .textarea.vcenter(oncopy="return false", onpaste="return false", placeholder="Type here...")
+  form(method="POST",id="inputtextbox", name="inputtextbox", oncopy="return false", onpaste="return false")
+    .textarea.vcenter.form-control(oncopy="return false", onpaste="return false", placeholder="Type here...")
       textarea
-    a(href='#' onclick='next()')
+    input(type="hidden" name="session_id", value=sid)
+    input(type="hidden" name="tp")
+    a(href='#')
       button.btn.vcenter(role ="button" type="submit")
         span Moo
   div
@@ -37,11 +39,30 @@ html
             // till here
             // Moo starts here
         .moo.vcenter
-            span time
-            p Your moo here
+            .moo_list
+
     // Moo ends here
-  script.
 
+
+script.
+    tdna = new TypingDNA(); /** creates an instance of the TypingDNA typing pattern recording class */
+    tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
+    tdna.startDiagram();
     /** checks if Enter is pressed on text forms and calls the next function */
-    initControls();
+    //- initControls();
 
+    function initControls() {
+    var controls = document.getElementsByClassName("form-control");
+    if(controls) {
+        for (var i = 0; i < controls.length; i++) {
+            controls[i].onkeydown = function(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    var stackLength = getStackLen();
+                    if(typeof nextFunction === 'function') {
+                        nextFunction();   
+                    }
+                }
+            }
+        }
+    }

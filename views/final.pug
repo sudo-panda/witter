@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/style.css" type="text/css")
+    script(src="/js/functions.js", type="application/javascript")
+    script(src="//typingdna.com/scripts/typingdna.js?v2.8")
+    script.
+      session_id = '#{sid}';
+  body
+  div.container
+    div.step(style={"display":"inline", "opacity":1})
+    p
+        h4 You have been logged out.
+    div
+        p Your typing pattern didn't match your registered typing pattern.
+    div(style={'padding-top':'20px'})
+        a.btn.btn-colors.btn-s(onclick="restart();" role="button")
+            b Start again
+  script.
+      (function() {
+          if(!isIframe()) {
+              var note = document.getElementById('note');
+              if(note) {
+                  note.style.display = 'block';
+              }
+          }
+      })();
