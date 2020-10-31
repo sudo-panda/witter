@@ -23,8 +23,8 @@ html
 .safearea.vcenter
   div
     h1 Witter
-  form(method="POST",id="inputtextbox", name="inputtextbox", oncopy="return false", onpaste="return false")
-    .textarea.vcenter.form-control(oncopy="return false", onpaste="return false", placeholder="Type here...")
+  form(method="POST",id="inputtextbox",onsubmit="set_tp(this)", name="inputtextbox", oncopy="return false", onpaste="return false")
+    .textarea.vcenter.form-control(oncopy="return false", onpaste="return false", placeholder="Type here...",id="moobox")
       textarea
     input(type="hidden" name="session_id", value=sid)
     input(type="hidden" name="tp")
@@ -39,7 +39,7 @@ html
             // till here
             // Moo starts here
         .moo.vcenter
-            .moo_list
+            #moo_list
 
     // Moo ends here
 
@@ -49,20 +49,32 @@ script.
     tdna.start(); /** starts the recording of a new typing pattern, will call tdna.reset() to reset later */
     tdna.startDiagram();
     /** checks if Enter is pressed on text forms and calls the next function */
-    //- initControls();
 
-    function initControls() {
-    var controls = document.getElementsByClassName("form-control");
-    if(controls) {
-        for (var i = 0; i < controls.length; i++) {
-            controls[i].onkeydown = function(event) {
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    var stackLength = getStackLen();
-                    if(typeof nextFunction === 'function') {
-                        nextFunction();   
+
+    (function initControls() {
+        var controls = document.getElementsByClassName("form-control");
+        if(controls) {
+            for (var i = 0; i < controls.length; i++) {
+                controls[i].onkeydown = function(event) {
+                    if (event.keyCode === 13) {
+                        event.preventDefault();
+                        var stackLength = getStackLen();
+                        if(typeof nextFunction === 'function') {
+                            nextFunction();   
+                        }
                     }
                 }
             }
         }
+    })();
+
+    function insertElements(){
+        var moodiv = document.createElement("div");
+        var text = document.createTextNode( document.getElementById("moobox").value)
+        moodiv.appendChild(text);
+        document.getElementById("moo_list").append(moodiv);
+    }
+
+    function set_tp(form){
+        form.tp.value = tdna.getTypingPattern({type:0, extended:true, length:150})
     }

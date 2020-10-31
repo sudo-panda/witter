@@ -3,6 +3,8 @@
 var index = require('../controllers/index');
 var enroll = require('../controllers/enroll');
 var Moo = require('../controllers/Moo');
+var final = require('../controllers/final');
+
 
 
 function initSessionVars() {
@@ -28,5 +30,6 @@ module.exports = function(app){
     app.post('/enroll', enroll.post);
     app.get('/Moo', Moo.get);
     app.post('/Moo', Moo.post);
+    app.get('/final', final);
 };
 

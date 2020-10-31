@@ -1,5 +1,7 @@
 'use strict';
 
+const functions = require("../resources/functions");
+
 var typingDnaClient = global.typingDnaClient;
 
 var moo = {
@@ -61,21 +63,16 @@ var moo = {
                 /** If result is 0 then the authentication failed, we store the typing pattern in a session variable and retry
                  * authentication with another text.
                  */
-                alert('In this situation we alert user on their email id');
                 sessionData.typingResult = 0;
                 return  req.session.save(function(){
-                    res.redirect(303,'final');
+                    res.redirect('final');
                 })
             }
             else {
                 /** Typing pattern authentication succeeded, redirect to final. */
-                sessionData.typingResult = 1;
                 return  req.session.save(function(){
-                    const moo_div = document.createElement("div");
-                    var textnode = document.createTextNode(document.getElementById('inputtextbox').value);
-                    moo_div.appendChild(textnode);
-                    document.getElementById("moo_list").appendChild(node);
-            })
+                    res.redirect('index');
+                })
             }
         })
     }
