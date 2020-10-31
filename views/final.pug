@@ -2,7 +2,7 @@ doctype html
 head
   meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel="stylesheet", href="/css/style.css" type="text/css")
+  link(rel="stylesheet", href="/css/final_style.css" type="text/css")
   script(src="/js/functions.js", type="application/javascript")
   script(src="//typingdna.com/scripts/typingdna.js?v2.8")
   script.
@@ -15,16 +15,15 @@ head
       .card.center
         p
             if loggedIn
-                h4 Your Moo as been posted!
+                h3 Your Moo as been posted!
                 br
                 p Thanks for using witter!
             else
-                h4 You've been logged out.
+                h3 You've been logged out.
                 br       
                 p Your typing pattern didn't match the enrolled pattern.
-        div(style={'padding-top':'20px'})
-            a.btn.btn-colors.btn-s(onclick="restart();" role="button")
-                b Start again
+        div.btn.vcenter(style={"top":"200px"})
+            input(value="Login Again", type="submit", onclick="restart()")
   script.
       (function() {
           if(!isIframe()) {
