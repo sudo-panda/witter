@@ -4,7 +4,6 @@ html
     title= title
     meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1")
-    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
     link(rel="stylesheet", href="/css/style.css" type="text/css")
     link(rel="stylesheet", href="/css/enroll_style.css" type="text/css")
     public/css/enroll_style.css
@@ -16,28 +15,29 @@ html
   div.container(style={"padding":"0"})
     include ./flash
     if(!finish)
-        div.step(id="collect", style={"display":"inline", "opacity":1})
-            p
-                if step ===  1
-                    h4 Enrolling new user step 1 of 2: Please type the text below
-                else
-                    h4 Enrolling new user step 2/2: Please type one more text
-            p
-                span.highlighted(id="pAH")
-                span(id="pA")
-            p
-                small
-                    b Author:&nbsp
-                    span(style={"color":"#999"}) #{author}
-            br
-            textarea.form-control(rows="3", cols="100", id="inputtextbox", name="inputtextbox", oncopy="return false", onpaste="return false", onkeyup="highlight('pAH','pA', this)", placeholder="Type the text loaded above")
-            br
-            form(method='POST', onsubmit='return enroll(this)')
-                input(type="hidden" name="session_id", value=sid)
-                input(type="hidden" name="tp")
-                div
-                    button.btn.btn-colors.btn-s.disabled(role="button", id="btn_next", type="submit")
-                        b Next step
+        .card.center
+            div.step(id="collect", style={"display":"inline", "opacity":1})
+                p
+                    if step ===  1
+                        b Enrolling new user step 1 of 2: Please type the text below
+                    else
+                        b Enrolling new user step 2/2: Please type one more text
+                p
+                    span.highlighted(id="pAH")
+                    span(id="pA")
+                p
+                    small
+                        b Author:&nbsp
+                        span(style={"color":"#999"}) #{author}
+                br
+                .textarea
+                    textarea.form-control(rows="4", cols="100", id="inputtextbox", name="inputtextbox", oncopy="return false", onpaste="return false", onkeyup="highlight('pAH','pA', this)", placeholder="Type the text loaded above")
+                br
+                form(method='POST', onsubmit='return enroll(this)')
+                    input(type="hidden" name="session_id", value=sid)
+                    input(type="hidden" name="tp")
+                    div.btn.vcenter(style={"top":"70%"})
+                        input.btn-colors.btn-s.disabled(value="Next", id="btn_next", type="submit")
     else
         //Finish learn
         div.step(id="finish", style={"display":"inline", "opacity":1})

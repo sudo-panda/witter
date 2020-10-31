@@ -209,6 +209,14 @@ input:focus ~ .highlight {
   position: relative;
 }
 
+.btn > input {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: inherit;
+  border: none;
+  background-color: inherit;
+}
+
 .btn span {
   display: block;
   padding: 7px 24px;
@@ -247,7 +255,7 @@ input:focus ~ .highlight {
   border-radius: 10px;
   padding: 10px;
   position: absolute;
-  width: 80%;
+  width: 87%;
   height: 18%;
   border: solid 2px blueviolet;
 }
@@ -264,4 +272,11 @@ input:focus ~ .highlight {
 
 span.highlighted {
   color: #999;
+}
+
+.btn>button:disabled,
+.btn>button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }

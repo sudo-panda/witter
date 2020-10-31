@@ -12,6 +12,15 @@
     left: 0;
   }
 
+  .card {
+    min-width: 500px;
+    height: 400px;
+    padding: 20px;
+    box-shadow: 0px 0px 18px #888888;
+    border-radius: 10px;
+    border: solid 2px blueviolet;
+  }
+
   /* Fading animation */
   .fade {
     -webkit-animation-name: fade;
