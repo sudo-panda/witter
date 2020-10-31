@@ -39,15 +39,14 @@ html
                     div.btn.vcenter(style={"top":"70%"})
                         input.btn-colors.btn-s.disabled(value="Next", id="btn_next", type="submit")
     else
-        //Finish learn
-        div.step(id="finish", style={"display":"inline", "opacity":1})
-            p
-                h4 Done
-            div.message
-                p The user is now enrolled
-            div
-                a.btn.btn-colors.btn-s(onclick="restart();" role="button")
-                    b Start again
+        .card.center
+            div.step(id="finish", style={"display":"inline", "opacity":1})
+                .vcenter(style={"top":"100px"})
+                    h3 Done
+                div.message.vcenter(style={"top":"170px"})
+                    p The user is now enrolled
+                div.btn.vcenter(style={"top":"260px"})
+                    input(value="Start again", type="submit", onclick="restart()")
     //Loading
     //- div.step(id="step_loading")
     //-     br
