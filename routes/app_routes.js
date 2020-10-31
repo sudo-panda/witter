@@ -1,7 +1,7 @@
 'use strict';
 
 var index = require('../controllers/index');
-var Moozone = require('../controllers/Moozone');
+var Moo = require('../controllers/Moo');
 var enroll = require('../controllers/enroll');
 
 function initSessionVars() {
@@ -25,7 +25,7 @@ module.exports = function(app){
     app.post('/index', index.post);
     app.get('/enroll', enroll.get);
     app.post('/enroll', enroll.post);
-    app.get('/Moozone', Moozone.get);
-    app.post('/Moozone', Moozone.post);
+    app.get('/Moo', Moo.get);
+    app.post('/Moo', Moo.post);
 };
 

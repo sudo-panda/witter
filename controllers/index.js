@@ -22,7 +22,7 @@ var index = {
         }
         /** Render the page */
         res.render('index', {
-            title: 'Demo - TypingDNA',
+            title: 'Witter',
             sid: req.sessionID,
             messages: messages
         });
@@ -68,7 +68,7 @@ var index = {
                     req.session.save(function() {
                         if(result.count > 0) {
                             /** User is allready enrolled, redirect to verify. */
-                            res.redirect('verify')
+                            res.redirect('Moo')
                         } else {
                             /** The user is not enrolled yet, redirect to enroll. */
                             res.redirect('enroll')

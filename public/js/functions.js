@@ -172,7 +172,7 @@ function verifyText(form) {
     if (fastCompareTexts(document.getElementById('inputtextbox').value, currentQuote) > 0.7) {
         /** at least 70% of the words should be typed correctly */
         var patternLength = (form.attempts && form.attempts.value) > 0 ? 80 : 160;
-        var tp = tdna.getTypingPattern({type:1, extended:true, length:patternLength});
+        var tp = tdna.getTypingPattern({type:0, extended:true, length:patternLength});
         if(tdna.isMobile() && TypingDNA.checkMobileValidity(tp) < 0.7) {
             swapContent('collect', 'mobile');
             return false;
